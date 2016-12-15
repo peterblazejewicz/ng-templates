@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 // BS4
 @import "~bootstrap/scss/bootstrap";
+// FS 4.*
+$fa-font-path:   "~font-awesome/fonts" !default;
+@import "~font-awesome/scss/font-awesome";
 //
 html {
   background: repeating-linear-gradient(

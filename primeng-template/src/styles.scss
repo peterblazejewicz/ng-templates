@@ -4,15 +4,12 @@
 // FS 4.*
 $fa-font-path:   "~font-awesome/fonts" !default;
 @import "~font-awesome/scss/font-awesome";
+// PNG 1.1
+@import "~primeng/resources/primeng.css";
+@import "~primeng/resources/themes/bootstrap/theme.css";
 //
 html {
-  background: repeating-linear-gradient(
-    45deg,
-    #606dbc,
-    #606dbc 10px,
-    #465298 10px,
-    #465298 20px
-  );
+  background: #465298;
 }
 body,
 png-root {
@@ -29,6 +26,7 @@ png-root {
 }
 
 .card-columns {
+    column-width: 18rem;
   @include media-breakpoint-only(lg) {
     column-count: 4;
   }
@@ -41,4 +39,11 @@ png-root {
   @include media-breakpoint-only(xs) {
     column-count: 1;
   }
+}
+.card,
+p-calendar,
+.ui-datepicker {
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }

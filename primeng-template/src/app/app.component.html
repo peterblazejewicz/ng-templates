@@ -76,6 +76,12 @@
           Featured
         </div>
         <div class="card-block">
+          <p-calendar [(ngModel)]="startDate" [showIcon]="true" dateFormat="dd/mm/yy" [appendTo]="body" #startDateContainer></p-calendar>
+        </div>
+        <div class="card-block">
+          <p-calendar [(ngModel)]="endDate" [showIcon]="true" dateFormat="dd/mm/yy" [appendTo]="body"></p-calendar>
+        </div>
+        <div class="card-block">
           <h4 class="card-title">Special title treatment</h4>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         </div>

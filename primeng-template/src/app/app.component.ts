@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'png works!';
+  startDate: Date = new Date();
+  endDate: Date = new Date();
 }

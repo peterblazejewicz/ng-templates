@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import {CalendarModule} from 'primeng/primeng';
+import {ChartModule} from 'primeng/primeng';
 
 
 import { AppComponent } from './app.component';
@@ -16,7 +17,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    CalendarModule
+    CalendarModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

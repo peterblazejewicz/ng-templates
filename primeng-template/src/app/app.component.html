@@ -38,14 +38,7 @@
         </div>
       </div>
       <div class="card card-block">
-        <blockquote class="card-blockquote">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <footer>
-            <small class="text-muted">
-              Someone famous in <cite title="Source Title">Source Title</cite>
-            </small>
-          </footer>
-        </blockquote>
+        <p-chart type="pie" [data]="pieChartData"></p-chart>
       </div>
       <div class="card">
         <div class="card-block">
@@ -66,9 +59,7 @@
           Featured
         </div>
         <div class="card-block">
-          <h4 class="card-title">Special title treatment</h4>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary"><i class="fa fa-pie-chart fa-lg"></i> Go somewhere</a>
+          <p-chart type="doughnut" [data]="doughnutChartData"></p-chart>
         </div>
       </div>
       <div class="card">
@@ -89,13 +80,6 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
-      <div class="card card-inverse" style="background-color: #333; border-color: #333;">
-        <div class="card-block">
-          <h3 class="card-title">Special title treatment</h3>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
       <div class="card card-block card-inverse card-primary text-xs-center">
         <blockquote class="card-blockquote">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
@@ -110,6 +94,11 @@
         <h4 class="card-title">Card title</h4>
         <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          <p-chart type="polarArea" [data]="polarChartData"></p-chart>
+        </div>
       </div>
       <div class="card card-block text-xs-right">
         <blockquote class="card-blockquote">

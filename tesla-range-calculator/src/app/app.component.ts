@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
       <img [src]="logo">
     </header>
     <div class="wrapper">
-
+      <tesla-battery></tesla-battery>
     </div>`
 })
 export class AppComponent {

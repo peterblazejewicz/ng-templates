@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'tesla-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  // tslint:disable-next-line:component-selector
+  selector: 'app-root',
+  styleUrls: ['./app.component.scss'],
+  template: `<header class="header">
+      <img [src]="logo">
+    </header>
+    <div class="wrapper">
+
+    </div>`
 })
 export class AppComponent {
-  title = 'tesla works!';
+  logo: string = 'assets/logo.svg';
 }

@@ -21,7 +21,8 @@
         "styles.css"
       ],
       "scripts": [
-        "../node_modules/auth0-js/build/auth0.js"
+        "../node_modules/auth0-js/build/auth0.js",
+        "../bower_components/auth0-lock/build/lock.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

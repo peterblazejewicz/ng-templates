@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor(auth: AuthService) {}
+  constructor(public auth: AuthService) { }
 }

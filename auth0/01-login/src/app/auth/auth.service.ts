@@ -22,10 +22,12 @@ export class AuthService implements IAuthService {
   }
 
   public login(): void {
+    alert('login');
     return;
   }
 
   public logout(): void {
+    alert('logout');
     return;
   }
 

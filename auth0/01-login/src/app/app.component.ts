@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   constructor(public auth: AuthService,
     elem: ElementRef, private renderer: Renderer) {
     this.nativeElement = elem.nativeElement;
+    auth.handleAuthentication();
   }
 
 

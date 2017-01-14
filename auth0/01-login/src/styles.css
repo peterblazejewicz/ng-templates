@@ -3,3 +3,6 @@ body {
   position: relative;
   background: #fff !important;
 }
+main {
+  margin-top: 2rem;
+}

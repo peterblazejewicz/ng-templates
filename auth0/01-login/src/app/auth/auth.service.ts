@@ -1,38 +1,45 @@
 import { Injectable } from '@angular/core';
+import { tokenNotExpired } from 'angular2-jwt';
 import { AUTH_CONFIG } from '../../environments/environment';
 
 @Injectable()
 export class AuthService implements IAuthService {
 
-  lock: any;
+  lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
+    autoclose: true,
+    auth: {
+      redirectUrl: AUTH_CONFIG.callbackURL,
+      responseType: 'token'
+    }
+  });
 
-  constructor() {
-    this.lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
-      autoclose: true,
-      auth: {
-        redirectUrl: AUTH_CONFIG.callbackURL,
-        responseType: 'id_token',
-        audience: `https://${AUTH_CONFIG.domain}/userinfo`
+  public isAuthenticated(): boolean {
+    return tokenNotExpired();
+  }
+
+  public login(): void {
+    this.lock.show();
+  }
+
+  public logout(): void {
+    // Remove token from localStorage
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+  }
+
+  public handleAuthentication(): void {
+    this.lock.on('authenticated', (authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setUser(authResult);
+      } else if (authResult && authResult.error) {
+        alert(`Error: ${authResult.error}`);
       }
     });
   }
 
-  public isAuthenticated(): boolean {
-    return true;
-  }
-
-  public login(): void {
-    alert('login');
-    return;
-  }
-
-  public logout(): void {
-    alert('logout');
-    return;
-  }
-
-  public handleAuthentication(): void {
-    return;
+  private setUser(authResult): void {
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
   }
 }
 

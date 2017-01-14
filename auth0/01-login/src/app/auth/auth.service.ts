@@ -6,6 +6,7 @@ import { AUTH_CONFIG } from '../../environments/environment';
 export class AuthService implements IAuthService {
 
   lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
+    allowedConnections: ['github'],
     autoclose: true,
     auth: {
       redirectUrl: AUTH_CONFIG.callbackURL,

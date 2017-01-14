@@ -11,7 +11,7 @@ export class AuthService implements IAuthService {
     clientID: AUTH_CONFIG.clientID,
     redirectUri: AUTH_CONFIG.callbackURL,
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
-    responseType: 'id_token'
+    responseType: 'token'
   });
 
   constructor(private router: Router) { }
@@ -22,14 +22,24 @@ export class AuthService implements IAuthService {
 
 
   public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        localStorage.setItem('access_token', authResult.accessToken);
-        localStorage.setItem('id_token', authResult.idToken);
-        this.router.navigate(['/home']);
-      } else if (authResult && authResult.error) {
-        alert(`Error: ${authResult.error}`);
+    this.auth0.parseHash((error, authResult) => {
+      if (error) {
+        alert(`Error: ${error.description}`);
+        return;
+      }
+      if (authResult && authResult.accessToken) {
+        console.log(authResult.accessToken);
+        this.auth0.client.userInfo(authResult.accessToken, (error, userInfo) => {
+          if (error) {
+            alert(`Error: ${authResult.error}`);
+            return;
+          }
+          window.location.hash = '';
+          localStorage.setItem('access_token', authResult.accessToken);
+          localStorage.setItem('profile', JSON.stringify(userInfo));
+          this.router.navigate(['/home']);
+
+        });
       }
     });
   }
@@ -64,7 +74,7 @@ export class AuthService implements IAuthService {
   public loginWithGithub(): void {
     this.auth0.authorize({
       connection: 'github',
-    }, function(err) {
+    }, function (err) {
       if (err) {
         alert(`Error: ${err.description}`);
       }
@@ -74,12 +84,12 @@ export class AuthService implements IAuthService {
   public logout(): void {
     // Remove token from localStorage
     localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
+    // localStorage.removeItem('id_token');
   }
 
   private setUser(authResult): void {
     localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
+    // localStorage.setItem('id_token', authResult.idToken);
     // localStorage.setItem('profile', JSON.stringify(profile))
   }
 }

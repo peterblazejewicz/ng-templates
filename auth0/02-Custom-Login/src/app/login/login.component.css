@@ -1,0 +1,7 @@
+.login-github {
+  display: flex;
+  align-items: center;
+}
+.login-github .fa {
+  margin-right: 0.25em;
+}

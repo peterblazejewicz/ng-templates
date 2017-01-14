@@ -31,16 +31,23 @@ export class AuthService implements IAuthService {
   public handleAuthentication(): void {
     this.lock.on('authenticated', (authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setUser(authResult);
+        this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
+          if (error) {
+            console.log(error);
+            return;
+          }
+          this.setUser(authResult, profile);
+        });
       } else if (authResult && authResult.error) {
         alert(`Error: ${authResult.error}`);
       }
     });
   }
 
-  private setUser(authResult): void {
+  private setUser(authResult, profile): void {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('profile', JSON.stringify(profile));
   }
 }
 

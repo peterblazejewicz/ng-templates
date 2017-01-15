@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'auth0-profile',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  profile: any;
+
+  constructor(public auth: AuthService, public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    if (this.auth.userProfile) {
+      this.profile = this.auth.userProfile;
+      this.profile.email = this.sanitizer.bypassSecurityTrustUrl(`eamilto:${this.profile.email}`);
+    } else {
+      this.auth.getProfile((err, profile) => {
+        this.profile = profile;
+        this.profile.email = this.sanitizer.bypassSecurityTrustUrl(`eamilto:${this.profile.email}`);
+
+      });
+    }
   }
 
 }

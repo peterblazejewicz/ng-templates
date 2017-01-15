@@ -1,3 +1,12 @@
-<p>
-  profile works!
-</p>
+<div class="card">
+  <div class="card-block">
+    <img src="{{profile?.picture}}" class="avatar" alt="avatar">
+    <h4 class="card-title">Profile</h4>
+    <h6 class="card-subtitle mb-2 text-muted">Nickname</h6>
+    <p class="card-text">{{profile?.nickname}}</p>
+    <a href="{{ profile?.email }}" class="card-link">Email: {{ profile?.email }}</a>
+  </div>
+  <div class="card-block">
+    <pre class="full-profile">{{ profile | json }}</pre>
+  </div>
+</div>

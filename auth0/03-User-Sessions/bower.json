@@ -1,0 +1,16 @@
+{
+  "name": "01-login",
+  "license": "MIT",
+  "homepage": "https://github.com/peterblazejewicz/ng-templates",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "auth0-lock": "^10.9.2"
+  }
+}

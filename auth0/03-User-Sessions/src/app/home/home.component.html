@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4 template="ngIf auth.isAuthenticated()">
+        You are logged in!
+    </h4>
+    <h4 template="ngIf !auth.isAuthenticated()">
+      You are not logged in! Please <a routerLink="/login">Log In</a> to continue.
+    </h4>
+  </div>
+</div>
+

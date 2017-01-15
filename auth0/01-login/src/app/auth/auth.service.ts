@@ -6,11 +6,12 @@ import { AUTH_CONFIG } from '../../environments/environment';
 export class AuthService implements IAuthService {
 
   lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
-    allowedConnections: ['github'],
+    oidcConformant: true,
     autoclose: true,
     auth: {
-      redirectUrl: AUTH_CONFIG.callbackURL,
-      responseType: 'token'
+      redirectUri: AUTH_CONFIG.callbackURL,
+      responseType: 'token id_token',
+      audience: `https://${AUTH_CONFIG.domain}/userinfo`
     }
   });
 
@@ -31,23 +32,16 @@ export class AuthService implements IAuthService {
   public handleAuthentication(): void {
     this.lock.on('authenticated', (authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
-          if (error) {
-            console.log(error);
-            return;
-          }
-          this.setUser(authResult, profile);
-        });
+        this.setUser(authResult);
       } else if (authResult && authResult.error) {
         alert(`Error: ${authResult.error}`);
       }
     });
   }
 
-  private setUser(authResult, profile): void {
+  private setUser(authResult): void {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('profile', JSON.stringify(profile));
   }
 }
 

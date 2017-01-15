@@ -1,7 +1,7 @@
-.login-github {
-  display: flex;
+.login-social {
+  display: inline-flex;
   align-items: center;
 }
-.login-github .fa {
+.login-social .fa {
   margin-right: 0.25em;
 }

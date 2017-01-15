@@ -26,10 +26,17 @@
         <legend>Social Authentication</legend>
         <button
           type="submit"
-          class="btn btn-outline-primary login-github"
+          class="btn btn-outline-primary login-social"
           (click)="auth.loginWithGithub()">
           <i class="fa fa-github fa-2x"></i>
           <span> Log In with Github</span>
+        </button>
+        <button
+          type="submit"
+          class="btn btn-outline-primary login-social"
+          (click)="auth.loginWithGoogle()">
+          <i class="fa fa-google fa-2x"></i>
+          <span> Log In with Google</span>
         </button>
       </fieldset>
     </form>

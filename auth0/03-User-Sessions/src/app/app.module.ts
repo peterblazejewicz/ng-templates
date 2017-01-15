@@ -8,14 +8,12 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './auth/auth.service';
-import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
     ProfileComponent
   ],
   imports: [

@@ -266,3 +266,6 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+
+# do not store configuration settings for DEV/PROD env
+**/appsettings.*.json

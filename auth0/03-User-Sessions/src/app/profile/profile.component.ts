@@ -16,12 +16,15 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     if (this.auth.userProfile) {
       this.profile = this.auth.userProfile;
-      this.profile.email = this.sanitizer.bypassSecurityTrustUrl(`eamilto:${this.profile.email}`);
+      if (this.profile.email) {
+        this.profile.email = this.sanitizer.bypassSecurityTrustUrl(`eamilto:${this.profile.email}`);
+      }
     } else {
       this.auth.getProfile((err, profile) => {
         this.profile = profile;
-        this.profile.email = this.sanitizer.bypassSecurityTrustUrl(`eamilto:${this.profile.email}`);
-
+        if (this.profile.email) {
+          this.profile.email = this.sanitizer.bypassSecurityTrustUrl(`eamilto:${this.profile.email}`);
+        }
       });
     }
   }

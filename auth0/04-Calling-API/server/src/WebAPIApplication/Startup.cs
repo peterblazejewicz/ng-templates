@@ -46,7 +46,6 @@ namespace WebAPIApplication
             var bytes = Encoding.UTF8.GetBytes(settings.Value.ClientSecret);
             var base64 = Convert.ToBase64String(bytes);
             var keyAsBytes = Convert.FromBase64String(base64);
-            logger.LogInformation(base64);
             var options = new JwtBearerOptions
             {
                 Audience = settings.Value.ClientId,

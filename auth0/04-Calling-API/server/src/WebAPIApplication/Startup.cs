@@ -34,6 +34,7 @@ namespace WebAPIApplication
             // Auth0 configuration
             services.Configure<Auth0Settings>(Configuration.GetSection(Auth0Settings.SectionKey));
             // Add framework services.
+            services.AddCors();
             services.AddMvc();
         }
 
@@ -71,6 +72,11 @@ namespace WebAPIApplication
                 }
             };
             app.UseJwtBearerAuthentication(options);
+            app.UseCors(builder =>
+            builder.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
             app.UseMvc();
         }
     }

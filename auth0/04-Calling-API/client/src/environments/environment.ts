@@ -5,7 +5,8 @@
 import { AuthConfig } from '../app/auth/auth-config';
 
 export const environment = {
-  production: false
+  production: false,
+  API_URL: ''
 };
 
 export const AUTH_CONFIG: AuthConfig = {

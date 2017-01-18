@@ -8,17 +8,21 @@ namespace WebAPIApplication.Controllers
     {
         [HttpGet]
         [Route("ping")]
-        public string Ping()
+        public dynamic Ping()
         {
-            return "All good. You don't need to be authenticated to call this.";
+            return new {
+                message = "All good. You don't need to be authenticated to call this."
+            };
         }
 
         [Authorize]
         [HttpGet]
         [Route("secured/ping")]
-        public string PingSecured()
+        public object PingSecured()
         {
-            return "All good. You only get this message if you are authenticated.";
+            return new {
+                message = "All good. You only get this message if you are authenticated."
+            };
         }
 
     }

@@ -5,12 +5,12 @@
 import { AuthConfig } from '../app/auth/auth-config';
 
 export const environment = {
-  production: false,
-  API_URL: ''
+  production: false
 };
 
 export const AUTH_CONFIG: AuthConfig = {
+  apiUrl: '',
+  callbackURL: 'http://localhost:4200/',
   clientID: '',
-  domain: '',
-  callbackURL: 'http://localhost:4200/'
+  domain: ''
 };

@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './auth/auth.service';
-import { ProfileComponent } from './profile/profile.component';
 import { PingComponent } from './ping/ping.component';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { AdminComponent } from './admin/admin.component';
@@ -25,7 +24,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent,
     PingComponent,
     AdminComponent
   ],

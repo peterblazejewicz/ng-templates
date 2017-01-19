@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
 import { AUTH_CONFIG } from '../../environments/environment';
 
+import * as jwt_decode from 'jwt-decode';
+
 @Injectable()
 export class AuthService implements IAuthService {
 
@@ -10,18 +12,33 @@ export class AuthService implements IAuthService {
     oidcConformant: true,
     autoclose: true,
     auth: {
-      audience: `https://${AUTH_CONFIG.domain}/userinfo`,
       redirectUri: AUTH_CONFIG.callbackURL,
       responseType: 'token id_token',
       params: {
-        scope: 'openid profile'
+        scope: 'openid read:messages'
       }
     }
   });
 
   userProfile: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.lock.on('show', () => {
+      console.log('show');
+    });
+    this.lock.on('hide', () => {
+      console.log('hide');
+    });
+    this.lock.on('unrecoverable_error', (error) => {
+      console.log(`unrecoverable_error: ${error}`);
+    });
+    this.lock.on('authorization_error', (error) => {
+      console.log(`authorization_error ${error}`);
+    });
+    this.lock.on('hash_parsed', (results) => {
+      console.log(`hash_parsed${results}`);
+    });
+  }
 
   public handleAuthentication(): void {
     this.lock.on('authenticated', (authResult) => {
@@ -46,20 +63,29 @@ export class AuthService implements IAuthService {
     });
   }
 
-  public login(): void {
-    this.lock.show();
+  getRole(): string {
+    const namespace = 'https://example.com';
+    const idToken = localStorage.getItem('id_token');
+    return jwt_decode(idToken)[`${namespace}/role`] || null;
+  }
+
+  isAdmin(): boolean {
+    return this.getRole() === 'admin';
   }
 
   public isAuthenticated(): boolean {
     return tokenNotExpired();
   }
 
+  public login(): void {
+    this.lock.show();
+  }
+
   public logout(): void {
     // Remove token from localStorage
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
-    // Go back to the home route
-    this.router.navigate(['/home']);
+    this.router.navigate(['home']);
   }
 
   private setUser(authResult): void {
@@ -68,10 +94,11 @@ export class AuthService implements IAuthService {
   }
 }
 
-
 export interface IAuthService {
   getProfile(cb: Function): void;
+  getRole(): string;
   handleAuthentication(): void;
+  isAdmin(): boolean;
   isAuthenticated(): boolean;
   login(): void;
   logout(): void;

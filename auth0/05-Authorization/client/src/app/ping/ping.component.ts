@@ -5,7 +5,7 @@ import { AuthHttp } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 
 import { AuthService } from '../auth/auth.service';
-import { environment } from '../../environments/environment';
+import { AUTH_CONFIG } from '../../environments/environment';
 
 @Component({
   selector: 'auth0-ping',
@@ -24,7 +24,7 @@ export class PingComponent implements OnInit {
 
   public ping(): void {
     this.message = '';
-    this.http.get(`${environment.API_URL}/values/ping`)
+    this.http.get(`${AUTH_CONFIG.apiUrl}/values/ping`)
       .map(res => res.json())
       .subscribe(
         data => this.message = data.message,
@@ -34,7 +34,7 @@ export class PingComponent implements OnInit {
 
   public securedPing(): void {
     this.message = '';
-    this.authHttp.get(`${environment.API_URL}/values/secured/ping`)
+    this.authHttp.get(`${AUTH_CONFIG.apiUrl}/values/secured/ping`)
       .map(res => res.json())
       .subscribe(
         data => this.message = data.message,

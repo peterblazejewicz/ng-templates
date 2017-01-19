@@ -1,11 +1,11 @@
 import { PingComponent } from './ping/ping.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'ping', component: PingComponent },
   { path: '**', redirectTo: '' }
 ];

@@ -27,7 +27,8 @@
         "../bower_components/auth0-lock/build/lock.js",
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/tether/dist/js/tether.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/jwt-decode/build/jwt-decode.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

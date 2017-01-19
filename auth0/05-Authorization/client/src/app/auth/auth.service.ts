@@ -15,7 +15,7 @@ export class AuthService implements IAuthService {
       redirectUri: AUTH_CONFIG.callbackURL,
       responseType: 'token id_token',
       params: {
-        scope: 'openid read:messages'
+        scope: 'openid roles'
       }
     }
   });

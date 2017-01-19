@@ -44,3 +44,5 @@ Thumbs.db
 
 # developmetn configuration
 **/environment.dev.ts
+# production configuration
+**/environment.prod.ts

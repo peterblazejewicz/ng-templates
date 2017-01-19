@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-block">
+    <div class="media">
+      <img width="50" src="{{profile?.picture}}" class="d-flex mr-3 rounded-circle" alt="avatar" >
+      <div class="media-body">
+        <h5 class="mt-0">{{ profile?.name }}</h5>
+        <h6 class="mt-2 text-muted">{{ profile?.nickname }}</h6>
+        <a href="{{ profile?.email }}" class="card-link" template="ngIf profile?.email">Email: {{ profile?.email }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="card-block">
+    <pre class="full-profile">{{ profile | json }}</pre>
+  </div>
+</div>
